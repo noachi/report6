@@ -5,7 +5,8 @@ package jp.ac.uryukyu.ie.e215715;
 
 class App{
     public static void main(String[] args) {
-        
+        GemeMaster master = new GemeMaster();
+        master.start();
     
     }
 }

@@ -7,7 +7,7 @@ public class Field {
     private ArrayList<String>Type = new ArrayList<String>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> IntegernumberList = new ArrayList<Integer>();
-    public void init(){
+    Field(){
         numberList.add("A"); 
         numberList.add("2"); 
         numberList.add("3");
@@ -47,7 +47,7 @@ public class Field {
 
     public ArrayList<Card> first(){
         ArrayList<Card> result = new ArrayList<Card>();
-        for(int i=0;i>2;i++){
+        for(int i=0;i<2;i++){
             result.add(draw());
         }
         return result;

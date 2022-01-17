@@ -18,7 +18,14 @@ public class Card {
     }
 
     public int getIntegerNumber(){
-        return Integer.parseInt(getNumber());
+        if(number == "A"){
+            return 1;
+        }else if(number == "J" || number == "Q" || number == "K"){
+            return 10;
+        }else{
+            return Integer.parseInt(getNumber());
+        }
+        
     }
 
 }
