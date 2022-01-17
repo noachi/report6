@@ -1,7 +1,7 @@
 package jp.ac.uryukyu.ie.e215715;
 import java.util.ArrayList;
 
-public class Human{
+abstract class Human{
     private String name;
     private ArrayList<Card> hand = new ArrayList<Card>();
 
@@ -25,6 +25,7 @@ public class Human{
         return num;
     }
 
+
     public Boolean isOver(){
         if(calculate() > 21){
             return true;
@@ -32,5 +33,7 @@ public class Human{
             return false;
         }
     }
+
+    public abstract void execute();
 }
 
