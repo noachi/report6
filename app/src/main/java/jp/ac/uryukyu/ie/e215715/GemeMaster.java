@@ -63,7 +63,7 @@ public class GemeMaster {
                     if(player.calculate() <= 20){ //20になるまで引き続けてもらう
                         System.out.println("0");  
                         player.addHand(field.draw());
-                    }else{ //18以上になったらドロー終了
+                    }else{ //20以上になったらドロー終了
                         System.out.println("1");
                         drawEnd[1] = true;
                         break;
