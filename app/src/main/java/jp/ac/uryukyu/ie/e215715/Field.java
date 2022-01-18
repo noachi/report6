@@ -9,7 +9,6 @@ public class Field {
     private ArrayList<String>numberList = new ArrayList<String>();
     private ArrayList<String>Type = new ArrayList<String>();
     private ArrayList<Card> cards = new ArrayList<>();
-    private ArrayList<Integer> IntegernumberList = new ArrayList<Integer>();
     Field(){ 
         numberList.add("A"); 
         numberList.add("2"); 
@@ -24,19 +23,7 @@ public class Field {
         numberList.add("J"); 
         numberList.add("Q"); 
         numberList.add("K");
-
-        /**
-         * "A"を1,"J,Q,K"を10に変換してリストに追加する
-         */
-        for(var number : numberList){ 
-            if(number == "A"){
-                IntegernumberList.add(1);
-            }else if(number == "J" || number == "Q" || number == "K"){
-                IntegernumberList.add(10);
-            }else{
-                IntegernumberList.add(Integer.parseInt(number));
-            }
-        }
+        
         
         Type.add("ハート");
         Type.add("ダイヤ");

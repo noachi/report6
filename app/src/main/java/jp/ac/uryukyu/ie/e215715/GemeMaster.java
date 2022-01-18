@@ -32,10 +32,8 @@ public class GemeMaster {
             showHand(player_list);
 
             for(var player : player_list){ //プレイヤーもディーラーもドローし終えたら勝ち負けを判定する
-                if(player.isOver() || drawEnd[0] && drawEnd[1]){
-                    isEnd = true;
-                    showHand(player_list);
-                    System.out.println(player_list.get(player_list.indexOf(player)==1 ? 0:1).getName()+"の勝ち！");
+                if(drawEnd[0] && drawEnd[1]){
+                    endTask();
                     break;
                 }
 
@@ -50,20 +48,28 @@ public class GemeMaster {
         
                     if(selector == 0){ //0を選んだらドロー
                         player.addHand(field.draw());
+                        if(player.isOver()){
+                            endTask();
+                            break;
+                        }else{
+                            break;
+                        }
                     }else{ //1を選んだ場合ドロー終了
                         drawEnd[0] = true;
                         break;
-                    }    
-                }else{ //ディーラーのターン
-                    System.out.println(player.getName() + "のターン");
-                    System.out.println("カードを引きますか？");
-                    System.out.println("0:カードを引く");
-                    System.out.println("1:カードを引かない");
-
-                    if(player.calculate() <= 20){ //20になるまで引き続けてもらう
+                    }
+                }else if(player.getName() == "ディーラー" && !drawEnd[1]){ //ディーラーのターン
+                    System.out.println(player.getName() + "のターン\n" + "カードを引きますか？\n" + "0:カードを引く\n" + "1:カードを引かない");
+                    if(player.calculate() <= 17){ //17になるまで引き続けてもらう
                         System.out.println("0");  
                         player.addHand(field.draw());
-                    }else{ //20以上になったらドロー終了
+                        if(player.isOver()){
+                            endTask();
+                            break;
+                        }else{
+                            break;
+                        }
+                    }else { //17以上になったらドロー終了
                         System.out.println("1");
                         drawEnd[1] = true;
                         break;
@@ -100,6 +106,39 @@ public class GemeMaster {
         System.out.println("------------");
     }
 
+    public void showResult(ArrayList<Player> player_list){
+        for(var player : player_list){
+            System.out.println("--" + player.getName() +  "--");
+            for(var card : player.getHand()){
+                System.out.println(card.getType() + "の" + card.getNumber());
+            }
+                
+        }
+        System.out.println("------------");
+    }
+
+    public void winnerMessage(ArrayList<Player> player_list){
+        if(!player_list.get(0).isOver() && player_list.get(0).calculate() > player_list.get(1).calculate()){//プレイヤーが溢れてないかつプレイヤーの方が多い時プレイヤーの勝ち
+            System.out.println(player_list.get(0).getName() + "の勝ち！");
+        }else if(player_list.get(1).isOver() && player_list.get(0).calculate() < player_list.get(1).calculate()){//ディーラーが溢れてるかつディーラーが多い時プレイヤーの勝ち
+            System.out.println(player_list.get(0).getName() + "の勝ち！");
+        }else if(!player_list.get(1).isOver() && player_list.get(0).calculate() < player_list.get(1).calculate()){//ディーラーが溢れてないかつディーラーの方が多い時ディーラーの勝ち
+            System.out.println(player_list.get(1).getName() + "の勝ち！");
+        }else if(player_list.get(0).isOver() && player_list.get(0).calculate() > player_list.get(1).calculate()){//プレイヤーが溢れてるかつプレイヤーの方が多い時ディーラーの勝ち
+            System.out.println(player_list.get(1).getName() + "の勝ち！");
+        }else{
+            System.out.println("引き分け");
+        }
+
+    }
+
+    public void endTask(){
+        isEnd = true;
+        showResult(player_list);
+        winnerMessage(player_list);
+        System.out.println("プレイヤーの手札の合計: " + player_list.get(0).calculate());
+        System.out.println("ディーラーの手札の合計: " + player_list.get(1).calculate());
+    }
     
 
     
