@@ -60,7 +60,7 @@ public class GemeMaster {
                     System.out.println("0:カードを引く");
                     System.out.println("1:カードを引かない");
 
-                    if(player.calculate() <= 20){ //18になるまで引き続けてもらう
+                    if(player.calculate() <= 20){ //20になるまで引き続けてもらう
                         System.out.println("0");  
                         player.addHand(field.draw());
                     }else{ //18以上になったらドロー終了
