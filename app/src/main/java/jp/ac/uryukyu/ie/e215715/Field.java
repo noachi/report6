@@ -3,11 +3,14 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class Field {
+    /**
+     * トランプの数字、型情報
+     */
     private ArrayList<String>numberList = new ArrayList<String>();
     private ArrayList<String>Type = new ArrayList<String>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> IntegernumberList = new ArrayList<Integer>();
-    Field(){ //トランプの数字情報
+    Field(){ 
         numberList.add("A"); 
         numberList.add("2"); 
         numberList.add("3");
@@ -35,13 +38,11 @@ public class Field {
             }
         }
         
-        //カードのタイプ情報
         Type.add("ハート");
         Type.add("ダイヤ");
         Type.add("クローバー");
         Type.add("スペード");
-        
-            
+                   
         for(var type : Type){ //トランプ52枚の組み合わせを作る
             for(var Number : numberList){
                 cards.add(new Card(Number,type));
