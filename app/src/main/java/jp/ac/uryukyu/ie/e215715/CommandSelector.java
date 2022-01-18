@@ -20,7 +20,7 @@ public class CommandSelector {
         commands.clear();
     }
 
-    //promptを表示した上で，ユーザの選択を待つ
+    // promptを表示した上で，ユーザの選択する
     int waitForUsersCommand(String prompt) {
         var index = 0;
         System.out.println(prompt);

@@ -7,7 +7,7 @@ public class Field {
     private ArrayList<String>Type = new ArrayList<String>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> IntegernumberList = new ArrayList<Integer>();
-    Field(){ //カードの数字情報
+    Field(){ //トランプの数字情報
         numberList.add("A"); 
         numberList.add("2"); 
         numberList.add("3");
@@ -22,7 +22,10 @@ public class Field {
         numberList.add("Q"); 
         numberList.add("K");
 
-        for(var number : numberList){
+        /**
+         * "A"を1,"J,Q,K"を10に変換してリストに追加する
+         */
+        for(var number : numberList){ 
             if(number == "A"){
                 IntegernumberList.add(1);
             }else if(number == "J" || number == "Q" || number == "K"){
@@ -39,13 +42,17 @@ public class Field {
         Type.add("スペード");
         
             
-        for(var type : Type){
+        for(var type : Type){ //トランプ52枚の組み合わせを作る
             for(var Number : numberList){
                 cards.add(new Card(Number,type));
             } 
         }            
     }
 
+    /**
+     * ゲーム開始時、プレイヤーとディーラーに２枚ずつカードを配布するメソッド
+     * @return　配布するカード（２枚）
+     */
     public ArrayList<Card> first(){
         ArrayList<Card> result = new ArrayList<Card>();
         for(int i=0;i<2;i++){
@@ -54,6 +61,10 @@ public class Field {
         return result;
     }
 
+    /**
+     * 52枚のトランプからランダムに１枚選ぶメソッド
+     * @return ランダムに選んだ１枚のトランプ
+     */
     public Card draw(){
         Random ra = new Random();
         int selector = ra.nextInt(cards.size());
