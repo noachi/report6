@@ -7,7 +7,7 @@ public class Field {
     private ArrayList<String>Type = new ArrayList<String>();
     private ArrayList<Card> cards = new ArrayList<>();
     private ArrayList<Integer> IntegernumberList = new ArrayList<Integer>();
-    Field(){
+    Field(){ //カードの数字情報
         numberList.add("A"); 
         numberList.add("2"); 
         numberList.add("3");
@@ -31,7 +31,8 @@ public class Field {
                 IntegernumberList.add(Integer.parseInt(number));
             }
         }
-            
+        
+        //カードのタイプ情報
         Type.add("ハート");
         Type.add("ダイヤ");
         Type.add("クローバー");

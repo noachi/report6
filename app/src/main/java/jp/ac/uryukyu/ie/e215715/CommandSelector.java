@@ -24,7 +24,7 @@ public class CommandSelector {
     int waitForUsersCommand(String prompt) {
         var index = 0;
         System.out.println(prompt);
-        for(var command : commands) { //選択肢をprint
+        for(var command : commands) { //選択肢を表示
             System.out.println(index + ":" + command);
             index += 1;
         }

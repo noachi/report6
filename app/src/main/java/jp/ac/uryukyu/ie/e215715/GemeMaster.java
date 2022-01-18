@@ -7,8 +7,6 @@ public class GemeMaster {
     private ArrayList<Player> player_list = new ArrayList<Player>();
     private boolean isEnd;
     private boolean[] drawEnd = new boolean[2];
-    // private Player dealer = new Player("ディーラー");
-    // private Player player = new Player("プレイヤー");
 
     GemeMaster(){
         player_list.add(new Player("プレイヤー"));
@@ -25,7 +23,6 @@ public class GemeMaster {
 
     public void start(){
         System.out.println("ゲームを開始します。");
-        field.draw();
 
         while(!isEnd){
             System.out.println("現在の手札");
@@ -45,6 +42,7 @@ public class GemeMaster {
                     command_selector.addCommand("カードを引かない");
                     
                     System.out.println(player.getName() + "のターン");
+                    System.out.println("現在の手札の合計は" + player.calculate() + "です。");
                     int selector = command_selector.waitForUsersCommand("カードを引きますか？");
         
                     if(selector == 0){
@@ -52,15 +50,15 @@ public class GemeMaster {
                     }else{
                         drawEnd[0] = true;
                         break;
-                    }
+                    }    
                 }else{
                     System.out.println(player.getName() + "のターン");
                     System.out.println("カードを引きますか？");
                     System.out.println("0:カードを引く");
                     System.out.println("1:カードを引かない");
 
-                    if(player.calculate() <= 20){
-                        System.out.println("0");
+                    if(player.calculate() <= 18){
+                        System.out.println("0");  
                         player.addHand(field.draw());
                     }else{
                         System.out.println("1");
